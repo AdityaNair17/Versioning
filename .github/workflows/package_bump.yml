@@ -17,7 +17,7 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Update version
-        run: npm version
+        run: npm version minor
       - name: 'cat package.json'
         run: cat ./package.json
       # - name: 'Output Step'
