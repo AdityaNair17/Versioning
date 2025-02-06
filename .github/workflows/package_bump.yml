@@ -16,6 +16,10 @@ jobs:
       #   uses: 'phips28/gh-action-bump-version@master'
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Git user
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "aditya.prnair@gmail.com"
       - name: Update version
         run: npm version minor
         env: 
