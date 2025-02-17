@@ -1,5 +1,9 @@
 name: version test
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
   bump-version:
@@ -11,21 +15,27 @@ jobs:
         uses: 'actions/checkout@v2'
       - name: 'cat package.json'
         run: cat ./package.json
-      # - name: 'Automated Version Bump'
-      #   id: version-bump
-      #   uses: 'phips28/gh-action-bump-version@master'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set up Git user
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "aditya.prnair@gmail.com"
-      - name: Update version
-        run: npm version minor
-        env: 
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording:  '[MINOR]'
+          major-wording:  '[MAJOR]'
+          patch-wording:  '[PATCH]'   
       - name: 'cat package.json'
         run: cat ./package.json
+      # - name: Set up Git user
+      #   run: |
+      #     git config --global user.name "GitHub Actions"
+      #     git config --global user.email "aditya.prnair@gmail.com"
+      # - name: Update version
+      #   run: npm version minor
+      #   env: 
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: 'cat package.json'
+      #   run: cat ./package.json
       # - name: 'Output Step'
       #   env:
       #     NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
