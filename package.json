@@ -1,6 +1,6 @@
 {
   "name": "versioning",
-  "version": "2.2.3",
+  "version": "3.0.0",
   "description": "Testing github actions",
   "main": "index.js",
   "scripts": {
